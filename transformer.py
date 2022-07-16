@@ -20,10 +20,12 @@ class Transformer:
 
     def row_operation(self, row: pd.Series, calc: typing.Dict):
         """
-        Contains the logic to interpret and apply the operations defined in Mongo.
+        Contains the logic to interpret and apply the operations defined in `calc` to the `row`.
+
+        This is a recursive method.
         """
         steps = calc.get("steps")
-        if steps and True not in [isinstance(type(item), dict) for item in steps.values()]:
+        if steps:
             for step_name, step_calc in steps.items():
                 row[step_name] = self.row_operation(row, step_calc)
         
@@ -32,7 +34,7 @@ class Transformer:
         return operation(row, columns)
 
 
-    def make_new_columns(self, dataframe: pd.DataFrame, transformations: dict):
+    def make_new_columns(self, dataframe: pd.DataFrame, transformations: typing.Dict):
         """
         Loops through each transformation which results in a new column.
         """
@@ -40,11 +42,10 @@ class Transformer:
             dataframe[new_column] = dataframe.apply(lambda row: self.row_operation(row, calc_object), axis=1)
 
     def rename_columns(self, df: pd.DataFrame, renames: typing.Dict):
-        """Renames the columns of the datafram in-place."""
+        """Renames the columns of the dataframe in-place."""
         df.rename(columns=renames, inplace=True)
 
     def format_to_output_structure(self, df: pd.DataFrame, structure: typing.List):
-        # df = df[structure]
         self.more_info = df[df.columns.difference(list(structure)+["_id"])].to_dict(orient="records")
         df.drop(columns=df.columns.difference(structure), inplace=True)
 
