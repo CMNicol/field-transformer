@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "field-transformer"
+version = "0.1.0"
+description = "A package to transform columns and rows of a dataframe."
+authors = ["Craig Nicol"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.4.3"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.6.0"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
