@@ -3,7 +3,7 @@ import unittest
 
 import pandas as pd
 
-from transformer import Transformer
+from field_transformer.transformer import Transformer
 
 
 class TestTransformer(unittest.TestCase):
