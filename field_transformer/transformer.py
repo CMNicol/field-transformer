@@ -6,7 +6,7 @@ import pandas as pd
 class Transformer:
 
     def __init__(self):
-        self.OPERATIONS = {"divide": self.divide, "sum": self.summer}
+        self.OPERATIONS = {"divide": self.divide, "sum": self.summer, "constant": self.constant}
 
     def divide(self, row: pd.Series, columns: typing.Dict):
         denominator_is_a_column = isinstance(columns["denominator"], str)
@@ -19,6 +19,9 @@ class Transformer:
         a = row[columns[0]]
         b = row[columns[-1]]
         return a+b
+
+    def constant(self, row: pd.Series, columns: typing.Dict):
+        return columns["constant"]
 
     def row_operation(self, row: pd.Series, calc: typing.Dict):
         """

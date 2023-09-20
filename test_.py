@@ -9,6 +9,10 @@ from field_transformer.transformer import Transformer
 class TestTransformer(unittest.TestCase):
     def setUp(self):
         self.transformations = {
+            "constant": {
+                "operation": "constant",
+                "columns": {"constant": 20}
+            },
             "mid": {
                 "operation": "divide",
                 "columns": {
@@ -28,7 +32,7 @@ class TestTransformer(unittest.TestCase):
             "Low": "low",
             "Date": "date",
         }
-        self.output_fields = ["date", "high", "low", "mid"]
+        self.output_fields = ["date", "high", "low", "mid", "constant"]
         self.test_transformer_data = [
             {
                 "High": 3,
@@ -44,6 +48,7 @@ class TestTransformer(unittest.TestCase):
                 "low": 1,
                 "mid": 2,
                 "date": "2022-12-04",
+                "constant": 20,
             },
         ]
 
