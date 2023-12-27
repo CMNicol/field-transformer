@@ -6,7 +6,7 @@ authors = ["Craig Nicol"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pandas = "2.1.0"
+pandas = "2.1.4"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "2.0.4"
